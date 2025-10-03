@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>React A → Z (Roman Urdu) — Deep & Simple Guide</title>
+    <style>
+      :root {
+        --bg: #0f1724;
+        --card: #0b1220;
+        --muted: #9aa7bf;
+        --accent: #60a5fa;
+        --glass: rgba(255, 255, 255, 0.04);
+        --code-bg: #071029;
+        --glass-2: rgba(255, 255, 255, 0.03);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Noto Sans", "Helvetica Neue", Arial;
+        background: linear-gradient(180deg, #071428 0%, #08111a 60%);
+        color: #e6eef8;
+        margin: 0;
+        padding: 32px;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      header {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), #7dd3fc);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #022;
+        font-weight: 800;
+        font-size: 22px;
+        box-shadow: 0 6px 30px rgba(96, 165, 250, 0.12);
+      }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      p.lead {
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      nav {
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        background: var(--glass);
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 20px;
+        margin-top: 22px;
+      }
+      .toc {
+        background: linear-gradient(180deg, var(--card), var(--glass-2));
+        padding: 18px;
+        border-radius: 12px;
+        position: sticky;
+        top: 28px;
+        height: calc(100vh - 64px);
+        overflow: auto;
+      }
+      .toc h3 {
+        margin: 0 0 8px 0;
+      }
+      .toc a {
+        display: block;
+        color: var(--muted);
+        padding: 8px 6px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      .toc a:hover {
+        background: rgba(255, 255, 255, 0.02);
+        color: #fff;
+      }
+
+      .doc {
+        padding: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          rgba(255, 255, 255, 0.02)
+        );
+        border-radius: 12px;
+      }
+      section {
+        margin-bottom: 26px;
+      }
+      h2 {
+        margin: 0 0 8px 0;
+      }
+      .muted {
+        color: var(--muted);
+      }
+
+      pre {
+        background: var(--code-bg);
+        padding: 14px;
+        border-radius: 8px;
+        overflow: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+          monospace;
+        font-size: 13px;
+        color: #dbeafe;
+      }
+      code {
+        font-size: 13px;
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        padding: 12px;
+        border-radius: 10px;
+      }
+      .toggle {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin: 10px 0;
+      }
+      .btn {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--muted);
+      }
+      .btn.primary {
+        background: linear-gradient(90deg, var(--accent), #7dd3fc);
+        color: #022;
+        border: none;
+      }
+
+      .diagram {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.015),
+          rgba(255, 255, 255, 0.02)
+        );
+        padding: 18px;
+        border-radius: 12px;
+        margin-top: 12px;
+      }
+      .flow-step {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin: 10px 0;
+      }
+      .dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      .code-sample {
+        margin-top: 10px;
+      }
+      details {
+        background: rgba(255, 255, 255, 0.01);
+        padding: 12px;
+        border-radius: 8px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      footer {
+        color: var(--muted);
+        margin-top: 18px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+        .toc {
+          position: static;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="logo">RN</div>
+        <div>
+          <h1>React A → Z (Roman Urdu)</h1>
+          <p class="lead">
+            Ek detailed magar friendly guide — <strong>main.jsx</strong> se
+            lekar <strong>build & deploy</strong> tak. Deep aur simple dono
+            sections. 💫
+          </p>
+        </div>
+      </header>
+
+      <nav>
+        <span class="chip">Vite + React</span>
+        <span class="chip">Virtual DOM</span>
+        <span class="chip">Hooks</span>
+        <span class="chip">Router</span>
+        <span class="chip">Build</span>
+      </nav>
+
+      <main>
+        <aside class="toc">
+          <h3>Table of Contents</h3>
+          <a href="#quick">Quick Overview (Short)</a>
+          <a href="#indexhtml">index.html &amp; root</a>
+          <a href="#mainjs">main.jsx — Deep</a>
+          <a href="#vdom">Virtual DOM & Diffing</a>
+          <a href="#components">Components, Props, State</a>
+          <a href="#hooks">Hooks (useState, useEffect)</a>
+          <a href="#router">React Router</a>
+          <a href="#vite">Vite Dev Server + HMR</a>
+          <a href="#build">Build & Deploy</a>
+          <a href="#examples">Code Examples (main.jsx, App.jsx)</a>
+          <a href="#howto">How to run locally</a>
+        </aside>
+
+        <article class="doc">
+          <section id="quick">
+            <h2>Quick Overview — Phir deep mein jayein</h2>
+            <p class="muted">
+              Short version: <strong>index.html</strong> me ek
+              <code>&lt;div id="root"&gt;</code> hota,
+              <strong>main.jsx</strong> us div ko pakad ke React app mount
+              karta. React apna Virtual DOM banata, components render karta, aur
+              jab state change hoti hai sirf required part update karta.
+            </p>
+            <div class="diagram card">
+              <div class="flow-step">
+                <div class="dot">1</div>
+                <div>
+                  <strong>index.html</strong>
+                  <div class="muted">
+                    — static HTML with &lt;div id="root"&gt;
+                  </div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="dot">2</div>
+                <div>
+                  <strong>main.jsx</strong>
+                  <div class="muted">
+                    — React ko mount karna (ReactDOM.createRoot)
+                  </div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="dot">3</div>
+                <div>
+                  <strong>App.jsx</strong>
+                  <div class="muted">
+                    — Root component, other components inside
+                  </div>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="dot">4</div>
+                <div>
+                  <strong>Virtual DOM</strong>
+                  <div class="muted">— diffing & efficient updates</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="indexhtml">
+            <h2>index.html — asli entry point</h2>
+            <p>
+              Vite project me <code>index.html</code> browser ko initial HTML
+              deta. Isme ek empty container hota jahan React apna UI inject
+              karta hai.
+            </p>
+            <pre><code>&lt;!-- index.html (Vite) --&gt;
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt; &lt;meta charset="utf-8"/&gt; &lt;title&gt;My App&lt;/title&gt; &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;script type="module" src="/src/main.jsx"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            <p class="muted">
+              Roman:
+              <em
+                >Yeh ek khaali plate hai. React isi plate me apna khana (UI)
+                serve karega.</em
+              >
+            </p>
+          </section>
+
+          <section id="mainjs">
+            <h2>
+              main.jsx — React browser ke sath kaise connect hoti hai (deep)
+            </h2>
+            <p>
+              Yahan se React app DOM ke sath attach hoti hai. Example code aur
+              har line ka matlab niche:
+            </p>
+
+            <pre><code>// src/main.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+)
+</code></pre>
+
+            <details>
+              <summary>Line-by-line explanation (Roman Urdu)</summary>
+              <p>
+                <strong>import React</strong> — React library ko import kar rahe
+                ho. JSX ko transpile karne ke liye zaroori. <br />
+                <strong>import ReactDOM...</strong> — React ko browser DOM se
+                connect karne ke liye. ReactDOM.createRoot modern API hai.<br />
+                <strong>ReactDOM.createRoot(...)</strong> — Yeh ek `root` object
+                banata jo tumhare <code>#root</code> div se linked hai. <br />
+                <strong>root.render(&lt;App/&gt;)</strong> — Is se App component
+                virtual DOM me render hota aur phir actual DOM me inject hota.
+              </p>
+
+              <p class="muted">
+                Roman:
+                <em
+                  >Main.jsx waiter hai jo chef ko bolta hai "is plate me mujhe
+                  dish serve kar" — phir dish (App) screen pe aa jati hai.</em
+                >
+              </p>
+            </details>
+
+            <div class="code-sample">
+              <h4>Mounting vs Hydration</h4>
+              <p class="muted">
+                Agar server-side rendering (SSR) use kar rahe ho toh
+                <code>hydrateRoot</code> use hota hai. Normal client app me
+                <code>createRoot</code>.
+              </p>
+              <pre><code>// SSR hydation example (short)
+import { hydrateRoot } from 'react-dom/client'
+hydrateRoot(document.getElementById('root'), &lt;App /&gt;)
+</code></pre>
+            </div>
+          </section>
+
+          <section id="vdom">
+            <h2>Virtual DOM &amp; Diffing</h2>
+            <p>
+              React DOM ko directly baar baar change karne ke bajaye ek JS
+              object (virtual DOM) banata. Jab state change hoti hai, React
+              purani aur naye virtual DOM ka farq (diff) nikalta, phir sirf
+              required updates real DOM pe apply karta.
+            </p>
+
+            <details>
+              <summary>Simple Roman Urdu analogy</summary>
+              <p>
+                Socho tumare paas ek menu board hai (virtual DOM). Jab ek item
+                price change ho to tum sirf usi item ko naya likh dete ho; puri
+                board ko dobara paint nahi karte. Isi tara React sirf change
+                wale nodes update karta — fast.
+              </p>
+            </details>
+          </section>
+
+          <section id="components">
+            <h2>Components, Props, State</h2>
+            <p>
+              React component chhota piece hota hai jo UI banata. Parent se
+              child ko data props se bhejte hain. Component apna internal data
+              <code>state</code> rakhta hai jo <code>useState</code> se manage
+              hota.
+            </p>
+
+            <pre><code>// Example: src/App.jsx
+import React, { useState } from 'react'
+
+export default function App(){
+  const [count, setCount] = useState(0)
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Orders: {count}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)}&gt;Add&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+
+            <p class="muted">
+              Roman:
+              <em
+                >Props: waiter ko chef ka note; State: table ke current order ka
+                hal.</em
+              >
+            </p>
+          </section>
+
+          <section id="hooks">
+            <h2>Hooks — useState, useEffect (aur custom hooks)</h2>
+            <p>
+              Hooks functions hain jo functional components me side-effects aur
+              state handle karne dete hain.
+            </p>
+
+            <pre><code>// useEffect example
+import React, { useEffect, useState } from 'react'
+
+function Clock(){
+  const [time, setTime] = useState(new Date())
+  useEffect(()=>{
+    const id = setInterval(()=> setTime(new Date()), 1000)
+    return ()=> clearInterval(id) // cleanup
+  }, [])
+  return &lt;div&gt;{time.toLocaleTimeString()}&lt;/div&gt;
+}
+</code></pre>
+
+            <details>
+              <summary>Roman: useEffect ka matlab</summary>
+              <p>
+                Jab component mount ho to effect chalana (componentDidMount).
+                Agar dependency array [] hai to sirf ek baar chalega. Agar
+                cleanup return kia hai to jab component unmount ho to cleanup
+                chalta — memory leak se bachne ke liye.
+              </p>
+            </details>
+          </section>
+
+          <section id="router">
+            <h2>React Router — multiple pages bina reload ke</h2>
+            <p>
+              React Router browser URL ko manage karta aur different components
+              dikhata bina page reload kiye.
+            </p>
+            <pre><code>// basic routes
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+&lt;BrowserRouter&gt;
+  &lt;Routes&gt;
+    &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+    &lt;Route path="/menu" element={&lt;Menu /&gt;} /&gt;
+  &lt;/Routes&gt;
+&lt;/BrowserRouter&gt;
+</code></pre>
+
+            <p class="muted">
+              Roman: URL ek table number jaisa — alag table par alag menu show
+              karna.
+            </p>
+          </section>
+
+          <section id="vite">
+            <h2>Vite Dev Server &amp; HMR (Hot Module Replacement)</h2>
+            <p>
+              Vite ek modern dev server hai jo modules ko fast serve karta. Har
+              file change pe whole page reload nahi hoti — HMR sirf woh module
+              update karta hai jisme change hua.
+            </p>
+            <pre><code>// Common commands (terminal)
+npm create vite@latest my-app --template react
+cd my-app
+npm install
+npm run dev   # dev server (HMR)
+npm run build # production build
+npm run preview # preview build locally
+</code></pre>
+            <details>
+              <summary>Roman: Vite analogy</summary>
+              <p>
+                Vite kitchen me sirf usi dish ko update karta hai jo change hui
+                — puri kitchen ko band nahi karta.
+              </p>
+            </details>
+          </section>
+
+          <section id="build">
+            <h2>Build &amp; Deploy</h2>
+            <p>
+              Production build me Vite tumhari app ko optimized files me bundle
+              karta (minify, tree-shaking). Output <code>dist/</code> folder
+              hota hai jise Netlify, Vercel, GitHub Pages ya kisi static host pe
+              deploy karte hain.
+            </p>
+            <pre><code>npm run build
+# dist/ ban jayega — isko host pe upload kar do
+</code></pre>
+
+            <details>
+              <summary>Tips (Roman)</summary>
+              <ul>
+                <li>
+                  Env variables: .env, .env.production me VITE_ prefix required.
+                </li>
+                <li>Public folder: static assets yahan rakhna.</li>
+                <li>Bundle size check: analyzers use kar sakte ho.</li>
+              </ul>
+            </details>
+          </section>
+
+          <section id="examples">
+            <h2>
+              Examples: main.jsx, App.jsx, index.html — ek file me samjhaya
+            </h2>
+            <p>
+              Yahan chhota project skeleton diya hai jise copy paste karke
+              samajh lo.
+            </p>
+
+            <pre><code>// index.html (root)
+&lt;!-- (same as earlier) --&gt;
+
+// src/main.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+ReactDOM.createRoot(document.getElementById('root')).render(&lt;App /&gt;)
+
+// src/App.jsx
+import React from 'react'
+import Counter from './Counter'
+export default function App(){
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Welcome&lt;/h1&gt;
+      &lt;Counter /&gt;
+    &lt;/div&gt;
+  )
+}
+
+// src/Counter.jsx
+import React, {useState} from 'react'
+export default function Counter(){
+  const [n, setN] = useState(0)
+  return &lt;div&gt;&lt;button onClick={()=>setN(x=>x+1)}&gt;Clicked {n}&lt;/button&gt;&lt;/div&gt;
+}
+</code></pre>
+          </section>
+
+          <section id="howto">
+            <h2>How to run locally — Step by step (Roman Urdu)</h2>
+            <ol>
+              <li>
+                Terminal kholo:
+                <code>npm create vite@latest my-app --template react</code>
+              </li>
+              <li><code>cd my-app</code> aur <code>npm install</code></li>
+              <li>
+                <code>npm run dev</code> — browser me localhost:5173 khologe
+              </li>
+              <li>Code edit karo — Vite HMR turant changes dikhata</li>
+            </ol>
+
+            <p class="muted">
+              Roman: Agar koi error aaye to console dekh, aur agar JSX error to
+              often syntax ya missing import hota hai.
+            </p>
+          </section>
+
+          <footer>
+            <div>
+              Ye doc Roman Urdu me banaya gaya hai — deep + simple dono. Agar
+              chaho to mai isko PDF bana ke de du ya GitHub repo structure ke
+              sath files bhi create kar du. 😊
+            </div>
+          </footer>
+        </article>
+      </main>
+    </div>
+
+    <script>
+      // small client interactivity (no external libs)
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = a.getAttribute("href").slice(1);
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    </script>
+  </body>
+</html>
